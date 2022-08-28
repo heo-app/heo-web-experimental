@@ -1,5 +1,13 @@
-import './style.css'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 export default function App() {
-  return <div>Hello World!</div>
+  return (
+    <BrowserRouter>
+      
+      <Routes>
+        <Route path="/" element={<div>this is root!</div>} />
+        <Route path="/test" element={<div>this is test</div>} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
