@@ -1,4 +1,6 @@
-const LoginView = () => {
+import { ReactElement } from 'react';
+
+const LoginView = (): ReactElement => {
   return <div>login please</div>;
 };
 

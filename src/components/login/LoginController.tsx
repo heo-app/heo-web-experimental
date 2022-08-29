@@ -1,6 +1,8 @@
+import { ReactElement } from 'react';
+
 import LoginView from './LoginView';
 
-const LoginController = () => {
+const LoginController = (): ReactElement => {
   return <LoginView />;
 };
 

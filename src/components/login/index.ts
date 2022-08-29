@@ -1,1 +1,1 @@
-export {default as LoginPage} from './LoginController'
+export { default as LoginPage } from './LoginController';
