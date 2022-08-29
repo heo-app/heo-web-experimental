@@ -1,13 +1,7 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter } from 'react-router-dom';
+import { customRoutes } from './chore/routes';
 
 export default function App() {
-  return (
-    <BrowserRouter>
-      
-      <Routes>
-        <Route path="/" element={<div>this is root!</div>} />
-        <Route path="/test" element={<div>this is test</div>} />
-      </Routes>
-    </BrowserRouter>
-  );
+  return <BrowserRouter>{customRoutes}</BrowserRouter>;
 }
+  
