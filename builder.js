@@ -1,4 +1,4 @@
-// const { start } = require('live-server')
+// const { start } = require('live-server') // uncomment this to run app with live server
 const { watch } = require('chokidar')
 const { build } = require('esbuild')
 const fs = require('fs-extra')
