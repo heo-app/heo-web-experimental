@@ -1,7 +1,12 @@
-const { start } = require('live-server')
+// const { start } = require('live-server')
 const { watch } = require('chokidar')
 const { build } = require('esbuild')
 const fs = require('fs-extra')
+
+// webpack
+const Webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
+const webpackConfig = require('./webpack.config.js');
 
 const isDev = process.env.NODE_ENV !== 'production'
 
@@ -39,6 +44,16 @@ const buildParams = {
   incremental: true
 };
 
+
+// webpack configs
+const compiler = Webpack(webpackConfig);
+const devServerOptions = { ...webpackConfig.devServer, open: true };
+const server = new WebpackDevServer(devServerOptions, compiler);
+const runServer = async () => {
+  console.log('Starting server...');
+  await server.start();
+};
+
 (async () => {
   fs.removeSync('dist')
   fs.copySync('public', 'dist')
@@ -50,7 +65,8 @@ const buildParams = {
       builder.rebuild()
     })
 
-    start(serverParams)
+    // start(serverParams) // start using live server
+    runServer(); // start using webpack
   } else {
     process.exit(0)
   }
