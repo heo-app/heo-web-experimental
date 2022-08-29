@@ -3,6 +3,7 @@ const path = require('path');
 module.exports = {
   entry: ['./dist/index.js'],
   watch: true,
+  mode: 'development',
   module: {
     rules: [
       {
