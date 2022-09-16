@@ -2,10 +2,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 const fs = require('fs-extra');
-const { watch } = require('chokidar');
-
-const { buildWithEsBuild } = require('./esBuildBuilder.js');
-const { runWebPackDevServer } = require('./webPackDevServer.js');
+// const { watch } = require('chokidar'); // to watch with chokidar
+// const { buildWithEsBuild } = require('./esBuildBuilder.js'); // to build with ESbuild
+const { runWebPackDevServer } = require('./webPackDevServer.js'); // to dev with webpack
+const { buildWithRollup } = require('./rollupBuilder.js'); // to build with rollup
 
 const isDev = process.env.NODE_ENV !== 'production';
 
@@ -13,15 +13,15 @@ const isDev = process.env.NODE_ENV !== 'production';
   fs.removeSync('dist');
   fs.copySync('public', 'dist');
 
-  const builder = await buildWithEsBuild(isDev);
+  await buildWithRollup();
 
   if (isDev) {
-    watch('src/**/*', { ignoreInitial: true }).on('all', () => {
-      builder.rebuild();
-    });
+    //   watch('src/**/*', { ignoreInitial: true }).on('all', () => {
+    //     builder.rebuild();
+    //   });
 
     runWebPackDevServer();
-  } else {
-    process.exit(0);
+    // } else {
+    // process.exit(0);
   }
 })();
