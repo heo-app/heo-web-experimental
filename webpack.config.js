@@ -1,4 +1,5 @@
 const path = require('path');
+const  webpack  = require('webpack');
 
 module.exports = {
   entry: ['./dist/index.js'],
@@ -9,7 +10,7 @@ module.exports = {
       {
         test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader'],
+        loader: 'babel-loader',
       },
       {
         test: /\.css$/i,
@@ -26,7 +27,9 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   devServer: {
-    static: path.resolve('./dist'),
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
     port: 3000,
     hot: true,
     historyApiFallback: true
@@ -35,4 +38,9 @@ module.exports = {
     lazyCompilation: true,
     topLevelAwait: true,
   },
+  plugins: [
+    new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify('development')
+    })
+  ],
 };
