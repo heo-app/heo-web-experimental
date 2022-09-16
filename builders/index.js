@@ -15,12 +15,17 @@ const isDev = process.env.NODE_ENV !== 'production';
 
   await buildWithRollup();
 
+  //TODO: find a better way
+  fs.removeSync('public/index.js');
+  fs.copySync('dist/index.js', 'public/index.js');
+
   if (isDev) {
     //   watch('src/**/*', { ignoreInitial: true }).on('all', () => {
     //     builder.rebuild();
     //   });
-
-    runWebPackDevServer();
+    setTimeout(() => {
+      runWebPackDevServer();
+    }, 4000);
     // } else {
     // process.exit(0);
   }
